@@ -1,0 +1,93 @@
+<?php
+
+class Mdab_cibeet extends CI_Model {
+
+    function __construct() {
+        parent::__construct();
+    }
+
+    function getdab_cibeet() {
+//        return $this->db->query('SELECT
+//    dab_cibeet.*
+//    , seksi.seksi
+//FROM
+  //  dpa1.dab_cibeet
+   // LEFT JOIN dpa1.seksi 
+    //    ON (dab_cibeet.id_seksi = seksi.id);');
+  
+   $query = "SELECT
+    *
+    FROM
+    dpa1.dab_cibeet
+     ";
+        
+  //      if ($this->session->userdata('jenis') == 'stb') {
+//			$seksi = $this->session->userdata('seksi');
+//			$query .= " WHERE seksi.seksi = '$seksi' ";			
+//		}
+  //              if ($this->session->userdata('jenis') == 'pab') {
+//			$seksi = $this->session->userdata('seksi');
+//			$query .= " WHERE seksi.seksi = '$seksi' ";			
+//		}
+  //              if ($this->session->userdata('jenis') == 'cipamingkis') {
+//			$seksi = $this->session->userdata('seksi');
+//			$query .= " WHERE seksi.seksi = '$seksi' ";			
+//		}
+  //               if ($this->session->userdata('jenis') == 'lemahabang') {
+//			$seksi = $this->session->userdata('seksi');
+//			$query .= " WHERE seksi.seksi = '$seksi' ";			
+//		}
+  //               if ($this->session->userdata('jenis') == 'bekasi') {
+//			$seksi = $this->session->userdata('seksi');
+//			$query .= " WHERE seksi.seksi = '$seksi' ";			
+//		}
+		//if ($this->session->userdata('jenis') == 'admin') {
+		//	$id_pemakaian_air = $this->session->userdata('id_pemakaian_air');
+		//	$query .= " WHERE pemakaian_air.id = '$id_pemakaian_air' "; 
+		//}
+		$query .= " ORDER BY dab_cibeet.id ";
+                return $this->db->query($query);        
+        
+        
+        }
+
+    function adddab_cibeet($tanggal_input, $jam, $limpasan, $bocoran, $q1_suplesi_ketarumbarat, 
+            $q2_kalicibeet, $keterangan) {
+            $data = array(//'id_seksi' => $id_seksi,
+            'tanggal_input' => $tanggal_input,
+            'jam' => $jam,
+            'limpasan' => $limpasan,
+            'bocoran' => $bocoran,
+            'q1_suplesi_ketarumbarat' => $q1_suplesi_ketarumbarat,
+            'q2_kalicibeet' => $q2_kalicibeet,
+            'keterangan' => $keterangan);
+        $this->db->insert('dab_cibeet', $data);
+    }
+
+    function getdab_cibeetid($id) {
+        $this->db->where('id', $id);
+        $query = $this->db->get('dab_cibeet');
+        return $query;
+    }
+
+    function updatedab_cibeet($id, $tanggal_input, $jam, $limpasan, $bocoran, $q1_suplesi_ketarumbarat, 
+            $q2_kalicibeet, $keterangan) {
+            $data = array(//'id_seksi' => $id_seksi,
+            'tanggal_input' => $tanggal_input,
+            'jam' => $jam,
+            'limpasan' => $limpasan,
+            'bocoran' => $bocoran,
+            'q1_suplesi_ketarumbarat' => $q1_suplesi_ketarumbarat,
+            'q2_kalicibeet' => $q2_kalicibeet,
+            'keterangan' => $keterangan);
+        $this->db->where('id', $id);
+        $this->db->update('dab_cibeet', $data);
+    }
+
+    function deldab_cibeet($id) {
+        $this->db->delete('dab_cibeet', array('id' => $id));
+    }
+
+}
+
+?>

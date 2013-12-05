@@ -1,0 +1,45 @@
+
+<!--#content -->
+<title>
+    <?php echo $title; ?>
+</title>
+	<div id="content">
+          <div class="box">
+     
+            <h2>Data Bendung</h2>
+            <p>&nbsp;</p>
+            <?php $i = 1; ?>
+            <table id="tbl_sipeg" border="0" cellspacing="1" cellpadding="2" class="display">
+                <tr>
+                    <th>No</th>
+                    <th>Bendung</th>
+                    <th>Seksi</th>
+                    <th>Proses</th>
+                </tr>
+                <?php foreach ($bendung->result() as $gol): ?>
+                    <tr>
+                        <td><?php echo $i; ?></td>
+                        <td><?php echo $gol->bendung; ?></td>
+                        <td><?php echo $gol->seksi; ?></td>
+                        <td><?php
+                            echo anchor('admin/ubahbendung/' . $gol->id, 'Ubah') . "  " .
+                            anchor('admin/hapusbendung/' . $gol->id, 'Hapus', array('onClick' => "return confirm('Anda yakin bendung $gol->bendung akan dihapus? ')"));
+                            ?>
+                        </td>
+                    </tr>
+                    <?php $i++;
+                endforeach;
+                ?>
+  </table>
+            <br><br>
+            <a href="<?php echo base_url() ?>admin/tambahbendung/" id="submit" class="tambah">Tambah</a>
+
+
+<!-- end #content -->
+</div>
+        </div>
+        
+		<div class="clear"></div>
+    </div>
+</div>
+    
